@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台灣香客大樓地圖 | Taiwan Pilgrim Building Map</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
+    <!-- Leaflet Marker Cluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="title" data-i18n="title">台灣香客大樓地圖</h1>
+            <button id="lang-toggle" class="lang-toggle" data-i18n="langToggle">English</button>
+        </div>
+        <div class="search-container">
+            <input type="text"
+                   id="search-input"
+                   class="search-input"
+                   data-i18n-placeholder="searchPlaceholder"
+                   placeholder="搜尋廟宇名稱或地址...">
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+                <span></span>
+            </button>
+
+            <!-- Filters Section -->
+            <section class="filter-section">
+                <h2 data-i18n="filterByDeity">依神明篩選</h2>
+                <div id="deity-filters" class="filter-group">
+                    <!-- Dynamically populated -->
+                </div>
+
+                <h2 data-i18n="filterByRegion">依地區篩選</h2>
+                <div id="region-filters" class="filter-group">
+                    <!-- Dynamically populated -->
+                </div>
+
+                <button id="clear-filters" class="btn-clear" data-i18n="clearFilters">清除篩選</button>
+            </section>
+
+            <!-- Route Planning Section -->
+            <section class="route-section">
+                <h2 data-i18n="planRoute">路線規劃</h2>
+
+                <div class="route-form">
+                    <label for="route-start" data-i18n="start">起點</label>
+                    <select id="route-start" class="route-select">
+                        <option value="" data-i18n="selectTemple">選擇廟宇...</option>
+                    </select>
+
+                    <label for="route-end" data-i18n="end">終點</label>
+                    <select id="route-end" class="route-select">
+                        <option value="" data-i18n="selectTemple">選擇廟宇...</option>
+                    </select>
+
+                    <button id="calculate-route" class="btn-primary" data-i18n="getRoute">規劃路線</button>
+                    <button id="clear-route" class="btn-secondary" data-i18n="clearRoute">清除路線</button>
+                </div>
+
+                <div id="route-info" class="route-info" style="display: none;">
+                    <div class="route-detail">
+                        <span class="route-label" data-i18n="distance">距離:</span>
+                        <span id="route-distance" class="route-value"></span>
+                    </div>
+                    <div class="route-detail">
+                        <span class="route-label" data-i18n="estimatedTime">預估時間:</span>
+                        <span id="route-time" class="route-value"></span>
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Map Container -->
+        <main class="map-container">
+            <div id="map"></div>
+        </main>
+    </div>
+
+    <!-- Temple Detail Modal -->
+    <div id="temple-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div id="modal-body">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            <span data-i18n="mapData">地圖資料:</span>
+            <a href="https://www.openstreetmap.org" target="_blank" rel="noopener">OpenStreetMap</a> |
+            <span data-i18n="routing">路線規劃:</span>
+            <a href="http://project-osrm.org/" target="_blank" rel="noopener">OSRM</a>
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Data -->
+    <script src="data/pilgrim-data.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+    <!-- Leaflet Routing Machine -->
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
+
+    <!-- Leaflet Marker Cluster -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+    <!-- App Modules -->
+    <script src="js/i18n.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/routing.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
