@@ -114,21 +114,50 @@ function createPopupContent(temple) {
   const deityText = window.i18n.getDeityText(temple.deity);
   const regionText = window.i18n.getRegionText(temple.region);
 
+  const bookText = lang === 'zh' ? '訂房預約' : 'Book Room';
+  const callText = lang === 'zh' ? '撥打電話' : 'Call';
+  const detailsText = lang === 'zh' ? '查看詳情' : 'View Details';
+  const addressLabel = lang === 'zh' ? '地址' : 'Address';
+  const deityLabel = lang === 'zh' ? '主神' : 'Deity';
+
+  let actionButtons = '';
+
+  // Add booking button if website exists
+  if (temple.website) {
+    actionButtons += `
+      <a href="${temple.website}" target="_blank" rel="noopener" class="popup-btn popup-btn-book">
+        🏨 ${bookText}
+      </a>
+    `;
+  }
+
+  // Add call button if phone exists
+  if (temple.phone) {
+    actionButtons += `
+      <a href="tel:${temple.phone}" class="popup-btn popup-btn-call">
+        📞 ${callText}
+      </a>
+    `;
+  }
+
   return `
     <div class="popup-content">
       <div class="popup-temple-name">${temple.nameZh}</div>
       <div class="popup-temple-name-en">${temple.nameEn}</div>
       <div class="popup-info">
-        <strong>${window.i18n.getText('address')}:</strong><br>
+        <strong>${addressLabel}:</strong><br>
         ${temple.addressZh}<br>
         ${temple.addressEn}
       </div>
       <div class="popup-info">
-        <strong>${window.i18n.getText('deity')}:</strong> ${deityText}
+        <strong>${deityLabel}:</strong> ${deityText}
       </div>
-      <button class="popup-btn" onclick="showTempleModal(${temple.id})">
-        ${window.i18n.getText('viewDetails')}
-      </button>
+      <div class="popup-actions">
+        ${actionButtons}
+        <button class="popup-btn popup-btn-details" onclick="showTempleModal(${temple.id})">
+          ℹ️ ${detailsText}
+        </button>
+      </div>
     </div>
   `;
 }
@@ -191,20 +220,41 @@ function showTempleModal(templeId) {
   const deityText = window.i18n.getDeityText(temple.deity);
   const regionText = window.i18n.getRegionText(temple.region);
 
+  const bookText = lang === 'zh' ? '🏨 訂房預約' : '🏨 Book Room';
+  const callText = lang === 'zh' ? '📞 撥打電話' : '📞 Call';
+
   const modalBody = document.getElementById('modal-body');
   modalBody.innerHTML = `
     <h2 class="modal-temple-name">${temple.nameZh}</h2>
     <p class="modal-temple-name-en">${temple.nameEn}</p>
+
+    ${temple.website ? `
+    <div class="modal-booking-section">
+      <a href="${temple.website}" target="_blank" rel="noopener" class="btn-book-room">
+        ${bookText}
+      </a>
+    </div>
+    ` : ''}
+
+    ${temple.phone ? `
+    <div class="modal-booking-section">
+      <a href="tel:${temple.phone}" class="btn-call-temple">
+        ${callText}: ${temple.phone}
+      </a>
+    </div>
+    ` : ''}
 
     <div class="modal-section">
       <strong>${window.i18n.getText('address')}</strong>
       <p>${temple.addressZh}<br>${temple.addressEn}</p>
     </div>
 
+    ${temple.phone ? `
     <div class="modal-section">
       <strong>${window.i18n.getText('phone')}</strong>
-      <p>${temple.phone || 'N/A'}</p>
+      <p><a href="tel:${temple.phone}">${temple.phone}</a></p>
     </div>
+    ` : ''}
 
     ${temple.website ? `
     <div class="modal-section">

@@ -482,6 +482,109 @@ body {
   transform: translateY(-2px);
 }
 
+/* Booking Buttons */
+.modal-booking-section {
+  margin-bottom: 15px;
+}
+
+.btn-book-room {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-book-room:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.btn-call-temple {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-call-temple:hover {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+/* Popup Actions */
+.popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.popup-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--primary-color);
+  color: var(--white);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  text-align: center;
+}
+
+.popup-btn:hover {
+  background: #A00D24;
+  transform: translateY(-1px);
+}
+
+.popup-btn-book {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+}
+
+.popup-btn-book:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.popup-btn-call {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+}
+
+.popup-btn-call:hover {
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+}
+
+.popup-btn-details {
+  background: #6B7280;
+}
+
+.popup-btn-details:hover {
+  background: #4B5563;
+}
+
 /* Footer */
 .footer {
   position: fixed;
